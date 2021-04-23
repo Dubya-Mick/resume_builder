@@ -1,0 +1,7 @@
+.mainCV {
+    width: 60vw;
+    margin: 0 auto;
+    outline: 1px solid black;
+    min-height: 100vh;
+}
+
