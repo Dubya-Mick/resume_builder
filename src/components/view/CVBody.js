@@ -3,14 +3,17 @@ import Education from './Education';
 import Hobbies from './Hobbies';
 import Honors from './Honors';
 import Work from './Work';
+import CVHeader from './CVHeader'
+
 
 
 function CVBody(props) {
 
-    const {education, work, honors, hobbies} = props.CVInfo;
+    const {personalInfo, education, work, honors, hobbies} = props.CVInfo;
 
     return (
         <div>
+            <CVHeader personalInfo={personalInfo}/>
             <section>
                 <Education education={education}/>
             </section>

@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
+import uniqid from 'uniqid'
 import './App.css'
+import CVForm from './components/form/CVForm'
 import CVBody from './components/view/CVBody'
-import CVHeader from './components/view/CVHeader'
 
 class App extends Component {
-  render() {
-
-
-    // main cv wrapper 
-
-    const CVData = {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
       personalInfo: {
         name: 'Scoobert Doobert', 
         title: 'Burger Developer',
         email: 'scoob@gmail.com', 
         phone: '1800-Scoobin', 
-        linkedIn: 'linkded.com/scoob',
       },
       education: [
         {
+          id: uniqid(),
           schoolName: 'Burger University',
           major: 'B.S. Burger Science',
           location: 'Chicago, IL',
@@ -26,6 +25,7 @@ class App extends Component {
           to: '1986',
         },
         {
+          id: uniqid(),
           schoolName: 'Burger High',
           major: 'Burger GED',
           location: 'Chicago, IL',
@@ -35,6 +35,7 @@ class App extends Component {
       ],
       work: [
         {
+          id: uniqid(),
           company: 'Scoob Burger Corp', 
           position: 'CEO', 
           location: 'London, KY', 
@@ -43,6 +44,7 @@ class App extends Component {
           responsibilities: 'Currently heading many advanced research teams with an emphasis on agility and boardroom dominance.',
         },
         {
+          id: uniqid(),
           company: 'Trunt Burger Inc.', 
           position: 'Intern', 
           location: 'Paris, KY', 
@@ -63,11 +65,52 @@ class App extends Component {
       ],
       hobbies: ['Grilling', 'Pickling', 'Business']
     }
+  }
 
+  handlePersonalChange = (e) => {
+    const {name, value} = e.target;
+    const personalInfo = {...this.state.personalInfo};
+    personalInfo[name] = value;
+    this.setState({personalInfo: personalInfo})
+  }
+
+  addSchool = () => {
+    const {education} = this.state;
+    education.push({
+      id: uniqid(),
+      schoolName: '',
+      major: '',
+      location: '',
+      from: '',
+      to: '',
+    });
+    this.setState({education: education});
+  }
+
+  deleteSchool = (idNum) => {
+    const {education} = this.state;
+    const newEdu = education.filter((school) => school.id !== idNum);
+    this.setState({education: newEdu});
+  }
+
+
+
+
+
+
+  
+  render() {
+    const {personalInfo} = this.state;
+    
     return (
       <div className="mainCV">
-        <CVHeader personalInfo={CVData.personalInfo}/>
-        <CVBody CVInfo={CVData}/>
+        <CVForm 
+          handlePersonalChange={this.handlePersonalChange}
+          personal={personalInfo}
+          
+        
+        />
+        <CVBody CVInfo={this.state}/>
       </div>
     )
   }

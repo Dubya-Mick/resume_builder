@@ -3,7 +3,7 @@ import './CVHeader.css'
 
 function CVHeader(props) {
 
-    const {name, title, email, phone, linkedIn} = props.personalInfo;
+    const {name, title, email, phone} = props.personalInfo;
 
     return (
         <div className="CVHeader">
@@ -15,7 +15,6 @@ function CVHeader(props) {
                 <ul>
                     <li>Email: {email}</li>
                     <li>Phone: {phone}</li>
-                    <li>LinkedIn: {linkedIn}</li>
                 </ul>
             </div>
         </div>
