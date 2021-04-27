@@ -74,6 +74,19 @@ class App extends Component {
     this.setState({personalInfo: personalInfo})
   }
 
+  handleSchoolChange = (e, id) => {
+    const {name, value} = e.target;
+    const education = this.state.education;
+    const newEdu = education.map(function(school) {
+      if (school.id === id) {
+        // object spread operator for modifying only one property
+        return {...school, [name]: value}; 
+      } 
+      return school;
+    });
+    this.setState({education: newEdu});
+  }
+
   addSchool = () => {
     const {education} = this.state;
     education.push({
@@ -93,21 +106,18 @@ class App extends Component {
     this.setState({education: newEdu});
   }
 
-
-
-
-
-
-  
   render() {
-    const {personalInfo} = this.state;
+    const {personalInfo, education} = this.state;
     
     return (
       <div className="mainCV">
         <CVForm 
           handlePersonalChange={this.handlePersonalChange}
+          handleSchoolChange={this.handleSchoolChange}
+          handleAddSchool={this.addSchool}
+          handleDeleteSchool={this.deleteSchool}
           personal={personalInfo}
-          
+          education={education}
         
         />
         <CVBody CVInfo={this.state}/>

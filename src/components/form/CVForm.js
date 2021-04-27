@@ -7,15 +7,29 @@ import WorkForm from './WorkForm';
 
 
 function CVForm(props) {
-    const {handlePersonalChange, personal} = props;
+    const { 
+        handlePersonalChange, 
+        handleSchoolChange, 
+        handleAddSchool,
+        handleDeleteSchool,
+        personal, 
+        education, 
+    } = props;
     return (
         <div>
+            <h1>Header</h1>
             <HeaderForm 
                 handlePersonalChange={handlePersonalChange}
                 personal={personal}
             />
             <section>
-                <EducationForm />
+                <h1>Education</h1>
+                <EducationForm 
+                    education={education}
+                    handleSchoolChange={handleSchoolChange}
+                    handleAddSchool={handleAddSchool}
+                    handleDeleteSchool={handleDeleteSchool}
+                />
             </section>
             <section>
                 <WorkForm />
