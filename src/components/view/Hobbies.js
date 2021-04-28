@@ -1,10 +1,12 @@
 import React from 'react'
-import uniqid from 'uniqid'
+import Hobby from './Hobby';
 
 function Hobbies(props) {
     const hobbies = props.hobbies;
     const hobbyList = hobbies.map((hobby) => (
-        <div key={uniqid()}>{hobby}</div>
+        <div key={hobby.id}>
+            <Hobby hobby={hobby} />
+        </div>
     ))
     return (
         <div>

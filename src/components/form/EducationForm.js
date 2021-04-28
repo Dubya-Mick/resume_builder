@@ -1,4 +1,5 @@
 import React from 'react'
+import Add from '../helpers/Add';
 import SchoolForm from './SchoolForm'
 
 function EducationForm(props) {
@@ -8,20 +9,21 @@ function EducationForm(props) {
         handleAddSchool,
         handleDeleteSchool,
     } = props;
+
     const schoolForms = education.map((school) => (
         <div key={school.id}>
             <SchoolForm
                 school={school}
                 handleSchoolChange={handleSchoolChange}
-                handleAddSchool={handleAddSchool}
                 handleDeleteSchool={handleDeleteSchool}
             />
         </div>
-    ))
+    ));
 
     return (
         <div>
             {schoolForms}
+            <Add clickHandler={handleAddSchool}/>
         </div>
     )
 }

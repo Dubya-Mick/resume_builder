@@ -12,12 +12,24 @@ function CVForm(props) {
         handleSchoolChange, 
         handleAddSchool,
         handleDeleteSchool,
+        handleWorkChange,
+        handleAddJob,
+        handleDeleteJob,
+        handleHonorsChange,
+        handleAddHonor,
+        handleDeleteHonor,
+        handleHobbiesChange,
+        handleAddHobby,
+        handleDeleteHobby,
         personal, 
-        education, 
+        education,
+        work, 
+        honors,
+        hobbies,
     } = props;
     return (
         <div>
-            <h1>Header</h1>
+            <h2>Personal Info</h2>
             <HeaderForm 
                 handlePersonalChange={handlePersonalChange}
                 personal={personal}
@@ -32,13 +44,31 @@ function CVForm(props) {
                 />
             </section>
             <section>
-                <WorkForm />
+                <h1>Work</h1>
+                <WorkForm 
+                    work={work}
+                    handleWorkChange={handleWorkChange}
+                    handleAddJob={handleAddJob}
+                    handleDeleteJob={handleDeleteJob}
+                />
             </section>
             <section>
-                <HonorsForm />
+                <h1>Honors</h1>
+                <HonorsForm 
+                    honors={honors}
+                    handleHonorsChange={handleHonorsChange}
+                    handleAddHonor={handleAddHonor}
+                    handleDeleteHonor={handleDeleteHonor}
+                />
             </section>
             <section>
-                <HobbiesForm />
+                <h1>Hobbies</h1>
+                <HobbiesForm 
+                    hobbies={hobbies}
+                    handleHobbiesChange={handleHobbiesChange}
+                    handleAddHobby={handleAddHobby}
+                    handleDeleteHobby={handleDeleteHobby}
+                />
             </section>
         </div>
     )

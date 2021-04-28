@@ -1,11 +1,13 @@
 import React from 'react'
-import uniqid from 'uniqid'
+import Honor from './Honor';
 
 function Honors(props) {
     const honors = props.honors;
 
     const honorList = honors.map((honor) => (
-        <div key={uniqid()}>{honor.title} ({honor.year}) </div>
+        <div key={honor.id}>
+            <Honor honor={honor}/>
+        </div>
     ))
 
     return (

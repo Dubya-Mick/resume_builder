@@ -55,28 +55,43 @@ class App extends Component {
       ],
       honors: [
         {
+          id: uniqid(),
           title: 'Burger of the Year',
           year: '2018',
         },
         {
+          id: uniqid(),
           title: 'Most likely to grill',
           year: '1980',
         }
       ],
-      hobbies: ['Grilling', 'Pickling', 'Business']
+      hobbies: [
+        {
+          id: uniqid(),
+          title: 'Grilling'
+        },
+        {
+          id: uniqid(),
+          title: 'Pool'
+        },
+        {
+          id: uniqid(),
+          title: 'Business'
+        },
+      ]
     }
   }
 
   handlePersonalChange = (e) => {
     const {name, value} = e.target;
-    const personalInfo = {...this.state.personalInfo};
+    const {personalInfo} = this.state;
     personalInfo[name] = value;
     this.setState({personalInfo: personalInfo})
   }
 
   handleSchoolChange = (e, id) => {
     const {name, value} = e.target;
-    const education = this.state.education;
+    const {education} = this.state;
     const newEdu = education.map(function(school) {
       if (school.id === id) {
         // object spread operator for modifying only one property
@@ -100,14 +115,106 @@ class App extends Component {
     this.setState({education: education});
   }
 
-  deleteSchool = (idNum) => {
+  deleteSchool = (id) => {
     const {education} = this.state;
-    const newEdu = education.filter((school) => school.id !== idNum);
+    const newEdu = education.filter((school) => school.id !== id);
     this.setState({education: newEdu});
   }
 
+  handleWorkChange = (e, id) => {
+    const {name, value} = e.target;
+    const {work} = this.state;
+    const newWork = work.map(function(job) {
+      if (job.id === id) {
+        return {...job, [name]: value}
+      } else {
+        return job;
+      }
+    });
+    this.setState({work: newWork})
+  }
+
+  addJob = () => {
+    const {work} = this.state;
+    work.push({
+      id: uniqid(),
+      company: '', 
+      position: '', 
+      location: '', 
+      from: '', 
+      to: '',
+      responsibilities: '',
+    });
+    this.setState({work: work})
+  }
+
+  deleteJob = (id) => {
+    const {work} = this.state;
+    const newWork = work.filter((job) => job.id !== id);
+    this.setState({work: newWork})
+  }
+
+  handleHonorsChange = (e, id) => {
+    const {name, value} = e.target;
+    const {honors} = this.state;
+    const newHonors = honors.map(function(honor) {
+      if (honor.id === id) {
+        return {...honor, [name]: value};
+      } else {
+        return honor;
+      }
+    });
+    this.setState({honors: newHonors})
+  }
+
+  addHonor = () => {
+    const {honors} = this.state;
+    honors.push({
+      id: uniqid(),
+      title: '',
+      year: '',
+    });
+    this.setState({honors: honors});
+  }
+
+  deleteHonor = (id) => {
+    const {honors} = this.state;
+    const newHonors = honors.filter((honor) => honor.id !== id);
+    this.setState({honors: newHonors})
+  }
+
+  handleHobbiesChange = (e, id) => {
+    const {name, value} = e.target;
+    const {hobbies} = this.state;
+    const newHobbies = hobbies.map(function(hobby) {
+      if (hobby.id === id) {
+        return {...hobby, [name]: value};
+      } else {
+        return hobby;
+      }
+    });
+    this.setState({hobbies: newHobbies})
+  }
+
+  addHobby = () => {
+    const {hobbies} = this.state;
+    hobbies.push({
+      id: uniqid(),
+      title: ''
+    });
+    this.setState({hobbies: hobbies});
+  }
+
+  deleteHobby = (id) => {
+    const {hobbies} = this.state;
+    const newHobbies = hobbies.filter((hobby) => hobby.id !== id);
+    this.setState({hobbies: newHobbies});
+  }
+
+
+
   render() {
-    const {personalInfo, education} = this.state;
+    const {personalInfo, education, work, honors, hobbies} = this.state;
     
     return (
       <div className="mainCV">
@@ -116,8 +223,20 @@ class App extends Component {
           handleSchoolChange={this.handleSchoolChange}
           handleAddSchool={this.addSchool}
           handleDeleteSchool={this.deleteSchool}
+          handleWorkChange={this.handleWorkChange}
+          handleAddJob={this.addJob}
+          handleDeleteJob={this.deleteJob}
+          handleHonorsChange={this.handleHonorsChange}
+          handleAddHonor={this.addHonor}
+          handleDeleteHonor={this.deleteHonor}
+          handleHobbiesChange={this.handleHobbiesChange}
+          handleAddHobby={this.addHobby}
+          handleDeleteHobby={this.deleteHobby}
           personal={personalInfo}
           education={education}
+          work={work}
+          honors={honors}
+          hobbies={hobbies}
         
         />
         <CVBody CVInfo={this.state}/>
