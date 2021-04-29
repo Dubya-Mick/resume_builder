@@ -1,6 +1,7 @@
 import React from 'react'
 import Delete from '../helpers/Delete';
 import Input from '../helpers/Input';
+import './cvform.css'
 
 function HobbyForm(props) {
     const {
@@ -11,12 +12,14 @@ function HobbyForm(props) {
 
     return (
         <div>
-            <Input 
-                onChange={(e) => handleHobbiesChange(e, hobby.id)}
-                name="title"
-                placeholder="Hobby"
-                value={hobby.title}
-            />
+            <div className="input-chunk">
+                <Input
+                    onChange={(e) => handleHobbiesChange(e, hobby.id)}
+                    name="title"
+                    placeholder="Hobby"
+                    value={hobby.title}
+                />
+            </div>
             <Delete clickHandler={() => handleDeleteHobby(hobby.id)} />
         </div>
     )

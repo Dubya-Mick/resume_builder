@@ -1,7 +1,7 @@
-.CVHeader {
+.cv-Header {
     outline: 1px solid black;
     width: 100%;
-    height: 18vh;
+    max-height: 30vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

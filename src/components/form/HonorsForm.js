@@ -1,6 +1,7 @@
 import React from 'react'
 import Add from '../helpers/Add';
 import HonorForm from './HonorForm';
+import './cvform.css';
 
 function HonorsForm(props) {
     const {
@@ -23,7 +24,9 @@ function HonorsForm(props) {
 
     return (
         <div>
-            {honorForms}
+            <div className="form-chunk">
+                {honorForms}
+            </div>
             <Add clickHandler={handleAddHonor} />
         </div>
     )

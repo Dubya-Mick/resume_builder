@@ -1,6 +1,7 @@
 import React from 'react'
 import Add from '../helpers/Add';
 import SchoolForm from './SchoolForm'
+import './cvform.css'
 
 function EducationForm(props) {
     const { 
@@ -21,8 +22,10 @@ function EducationForm(props) {
     ));
 
     return (
-        <div>
-            {schoolForms}
+        <div> 
+            <div className="form-chunk">
+                {schoolForms}
+            </div>
             <Add clickHandler={handleAddSchool}/>
         </div>
     )

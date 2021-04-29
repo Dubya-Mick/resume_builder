@@ -1,12 +1,12 @@
 import React from 'react'
-import './CVHeader.css'
+import './cvheader.css'
 
 function CVHeader(props) {
 
     const {name, title, email, phone} = props.personalInfo;
 
     return (
-        <div className="CVHeader">
+        <div className="cv-Header">
             <div>
                 <h1>{name}</h1>
                 <h2>{title}</h2>

@@ -1,0 +1,6 @@
+.text-area {
+    box-sizing: border-box;
+    display: block;
+    margin: 0.5rem auto;
+    width: 100%;
+}

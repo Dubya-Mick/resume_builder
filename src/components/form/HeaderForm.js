@@ -1,10 +1,11 @@
 import React from 'react'
 import Input from '../helpers/Input';
+import './cvform.css'
 
 function HeaderForm(props) {
     const {handlePersonalChange, personal} = props;
     return (
-        <div>
+        <div className="input-chunk">
             <Input 
                 onChange={(e) => handlePersonalChange(e)}
                 name='name'

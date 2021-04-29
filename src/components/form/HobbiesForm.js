@@ -1,6 +1,7 @@
 import React from 'react'
 import Add from '../helpers/Add';
 import HobbyForm from './HobbyForm';
+import './cvform.css'
 
 function HobbiesForm(props) {
     const {
@@ -22,7 +23,9 @@ function HobbiesForm(props) {
 
     return (
         <div>
-            {hobbyForms}
+            <div className='form-chunk'>
+                {hobbyForms}
+            </div>
             <Add clickHandler={handleAddHobby} />
         </div>
     )

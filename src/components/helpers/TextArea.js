@@ -1,4 +1,5 @@
 import React from 'react'
+import './textarea.css'
 
 function TextArea(props) {
     const {
@@ -11,6 +12,7 @@ function TextArea(props) {
     return (
         <div>
             <textarea 
+            className="text-area"
             onChange={onChange}
             name={name}
             placeholder={placeholder}

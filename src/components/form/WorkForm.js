@@ -1,6 +1,7 @@
 import React from 'react'
 import Add from '../helpers/Add';
 import JobForm from './JobForm';
+import './cvform.css'
 
 function WorkForm(props) {
     const {
@@ -22,7 +23,9 @@ function WorkForm(props) {
 
     return (
         <div>
-            {jobForms}
+            <div className="form-chunk">
+                {jobForms}
+            </div>
             <Add clickHandler={handleAddJob}/>
         </div>
     )

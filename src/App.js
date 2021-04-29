@@ -211,6 +211,10 @@ class App extends Component {
     this.setState({hobbies: newHobbies});
   }
 
+  componentDidMount() {
+    document.body.classList.add('body-style')
+  }
+
 
 
   render() {
@@ -218,27 +222,29 @@ class App extends Component {
     
     return (
       <div className="mainCV">
-        <CVForm 
-          handlePersonalChange={this.handlePersonalChange}
-          handleSchoolChange={this.handleSchoolChange}
-          handleAddSchool={this.addSchool}
-          handleDeleteSchool={this.deleteSchool}
-          handleWorkChange={this.handleWorkChange}
-          handleAddJob={this.addJob}
-          handleDeleteJob={this.deleteJob}
-          handleHonorsChange={this.handleHonorsChange}
-          handleAddHonor={this.addHonor}
-          handleDeleteHonor={this.deleteHonor}
-          handleHobbiesChange={this.handleHobbiesChange}
-          handleAddHobby={this.addHobby}
-          handleDeleteHobby={this.deleteHobby}
-          personal={personalInfo}
-          education={education}
-          work={work}
-          honors={honors}
-          hobbies={hobbies}
-        
-        />
+        <div className="cv-form-container">
+          <CVForm
+            handlePersonalChange={this.handlePersonalChange}
+            handleSchoolChange={this.handleSchoolChange}
+            handleAddSchool={this.addSchool}
+            handleDeleteSchool={this.deleteSchool}
+            handleWorkChange={this.handleWorkChange}
+            handleAddJob={this.addJob}
+            handleDeleteJob={this.deleteJob}
+            handleHonorsChange={this.handleHonorsChange}
+            handleAddHonor={this.addHonor}
+            handleDeleteHonor={this.deleteHonor}
+            handleHobbiesChange={this.handleHobbiesChange}
+            handleAddHobby={this.addHobby}
+            handleDeleteHobby={this.deleteHobby}
+            personal={personalInfo}
+            education={education}
+            work={work}
+            honors={honors}
+            hobbies={hobbies}
+          
+          />
+        </div>
         <CVBody CVInfo={this.state}/>
       </div>
     )

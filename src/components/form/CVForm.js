@@ -4,6 +4,7 @@ import HeaderForm from './HeaderForm'
 import HobbiesForm from './HobbiesForm';
 import HonorsForm from './HonorsForm';
 import WorkForm from './WorkForm';
+import './cvform.css'
 
 
 function CVForm(props) {
@@ -28,13 +29,15 @@ function CVForm(props) {
         hobbies,
     } = props;
     return (
-        <div>
-            <h2>Personal Info</h2>
-            <HeaderForm 
-                handlePersonalChange={handlePersonalChange}
-                personal={personal}
-            />
+        <div className='cv-form'>
             <section>
+                <h2>Personal Info</h2>
+                <HeaderForm
+                    handlePersonalChange={handlePersonalChange}
+                    personal={personal}
+                />
+            </section>
+            <section className="section">
                 <h1>Education</h1>
                 <EducationForm 
                     education={education}
@@ -43,7 +46,7 @@ function CVForm(props) {
                     handleDeleteSchool={handleDeleteSchool}
                 />
             </section>
-            <section>
+            <section className="section">
                 <h1>Work</h1>
                 <WorkForm 
                     work={work}
@@ -52,7 +55,7 @@ function CVForm(props) {
                     handleDeleteJob={handleDeleteJob}
                 />
             </section>
-            <section>
+            <section className="section">
                 <h1>Honors</h1>
                 <HonorsForm 
                     honors={honors}
@@ -61,7 +64,7 @@ function CVForm(props) {
                     handleDeleteHonor={handleDeleteHonor}
                 />
             </section>
-            <section>
+            <section className="section">
                 <h1>Hobbies</h1>
                 <HobbiesForm 
                     hobbies={hobbies}
