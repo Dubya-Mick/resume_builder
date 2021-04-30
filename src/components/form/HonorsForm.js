@@ -27,7 +27,7 @@ function HonorsForm(props) {
             <div className="form-chunk">
                 {honorForms}
             </div>
-            <Add clickHandler={handleAddHonor} />
+            <Add content="Add Honor" clickHandler={handleAddHonor} />
         </div>
     )
 }

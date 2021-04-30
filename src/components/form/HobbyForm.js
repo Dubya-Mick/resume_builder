@@ -20,7 +20,7 @@ function HobbyForm(props) {
                     value={hobby.title}
                 />
             </div>
-            <Delete clickHandler={() => handleDeleteHobby(hobby.id)} />
+            <Delete content="Delete Hobby" clickHandler={() => handleDeleteHobby(hobby.id)} />
         </div>
     )
 }

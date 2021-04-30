@@ -9,6 +9,7 @@ function WorkForm(props) {
         handleWorkChange,
         handleAddJob,
         handleDeleteJob,
+        handleResponsibilityChange,
     } = props;
 
     const jobForms = work.map((job) => (
@@ -17,6 +18,7 @@ function WorkForm(props) {
                 job={job}
                 handleWorkChange={handleWorkChange}
                 handleDeleteJob={handleDeleteJob}
+                handleResponsibilityChange={handleResponsibilityChange}
             />
         </div>
     ));
@@ -26,7 +28,7 @@ function WorkForm(props) {
             <div className="form-chunk">
                 {jobForms}
             </div>
-            <Add clickHandler={handleAddJob}/>
+            <Add content="Add Job" clickHandler={handleAddJob}/>
         </div>
     )
 }

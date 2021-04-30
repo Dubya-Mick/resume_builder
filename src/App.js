@@ -41,7 +41,7 @@ class App extends Component {
           location: 'London, KY', 
           from: 'May 2015', 
           to: 'Present',
-          responsibilities: 'Currently heading many advanced research teams with an emphasis on agility and boardroom dominance.',
+          responsibilities: [{id: uniqid(), detail: 'one'}, {id: uniqid(), detail: 'two'}, {id: uniqid(), detail: 'three'}],
         },
         {
           id: uniqid(),
@@ -50,7 +50,7 @@ class App extends Component {
           location: 'Paris, KY', 
           from: 'June 1986', 
           to: 'May 2015',
-          responsibilities: 'Fetched condiments including ketchup, mustard, and donkey sauce for the higher-ups',
+          responsibilities: [{id: uniqid(), detail: 'one'}, {id: uniqid(), detail: 'two'}, {id: uniqid(), detail: 'three'}],
         }
       ],
       honors: [
@@ -131,6 +131,28 @@ class App extends Component {
         return job;
       }
     });
+    this.setState({work: newWork})
+  }
+
+  handleResponsibilityChange = (e, jobID, detailID) => {
+    const {value} = e.target;
+    const {work} = this.state;
+    const newWork = work.map(function(job) {
+      if (job.id === jobID) {
+        return job.responsibilities.map(function(jobDetail) {
+          if (jobDetail.id === detailID) {
+            return {...jobDetail, detail: value};
+          } else {
+            return jobDetail;
+          }
+        })
+      } else {
+        return job;
+      }
+    })
+
+    console.log(newWork)
+
     this.setState({work: newWork})
   }
 
@@ -237,6 +259,7 @@ class App extends Component {
             handleHobbiesChange={this.handleHobbiesChange}
             handleAddHobby={this.addHobby}
             handleDeleteHobby={this.deleteHobby}
+            handleResponsibilityChange = {this.handleResponsibilityChange}
             personal={personalInfo}
             education={education}
             work={work}

@@ -8,7 +8,7 @@ function Job(props) {
             <h4>{jobInfo.position}</h4>
             <div>{jobInfo.location}</div>
             <span>{jobInfo.from} - {jobInfo.to}</span>
-            <p>{jobInfo.responsibilities}</p>
+            {/* <p>{jobInfo.responsibilities}</p> */}
         </div>
     )
 }

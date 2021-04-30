@@ -45,7 +45,7 @@ function SchoolForm(props) {
                     />
                 </div>
             </div>
-            <Delete clickHandler={() => handleDeleteSchool(school.id)} />
+            <Delete content="Delete School" clickHandler={() => handleDeleteSchool(school.id)} />
         </div>
     )
 }

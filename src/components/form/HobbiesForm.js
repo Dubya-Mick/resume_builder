@@ -26,7 +26,7 @@ function HobbiesForm(props) {
             <div className='form-chunk'>
                 {hobbyForms}
             </div>
-            <Add clickHandler={handleAddHobby} />
+            <Add content="Add Hobby" clickHandler={handleAddHobby} />
         </div>
     )
 }

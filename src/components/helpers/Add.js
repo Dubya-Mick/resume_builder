@@ -2,11 +2,11 @@ import React from 'react'
 import './add.css'
 
 function Add(props) {
-    const {clickHandler} = props
+    const {clickHandler, content} = props;
 
     return (
         <div>
-            <button onClick={clickHandler} className="add">Add</button>
+            <button onClick={clickHandler} className="add">{content}</button>
         </div>
     )
 }

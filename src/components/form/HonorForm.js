@@ -26,7 +26,7 @@ function HonorForm(props) {
                     value={honor.year}
                 />
             </div>
-            <Delete clickHandler={() => handleDeleteHonor(honor.id)} />
+            <Delete content="Delete Honor" clickHandler={() => handleDeleteHonor(honor.id)} />
         </div>
     )
 }

@@ -1,14 +1,15 @@
 import React from 'react'
 import Delete from '../helpers/Delete';
 import Input from '../helpers/Input';
-import TextArea from '../helpers/TextArea';
 import './cvform.css'
+import JobDetailsForm from './JobDetailsForm';
 
 function JobForm(props) {
     const {
         job,
         handleWorkChange,
-        handleDeleteJob
+        handleDeleteJob,
+        handleResponsibilityChange,
     } = props;
 
     return (
@@ -46,14 +47,14 @@ function JobForm(props) {
                         value={job.to}
                     />
                 </div>
-                <TextArea
-                    onChange={(e) => handleWorkChange(e, job.id)}
-                    name="responsibilities"
-                    placeholder="Responsibilities"
-                    value={job.responsibilities}
+                <JobDetailsForm
+                    handleResponsibilityChange={handleResponsibilityChange}
+                    jobDetails={job.responsibilities}
+                    jobID={job.id}
                 />
+
         </div>           
-            <Delete clickHandler={() => handleDeleteJob(job.id)}/>
+            <Delete content="Delete Job" clickHandler={() => handleDeleteJob(job.id)}/>
         </div>
     )
 }

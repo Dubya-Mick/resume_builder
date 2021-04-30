@@ -26,7 +26,7 @@ function EducationForm(props) {
             <div className="form-chunk">
                 {schoolForms}
             </div>
-            <Add clickHandler={handleAddSchool}/>
+            <Add content="Add School" clickHandler={handleAddSchool}/>
         </div>
     )
 }
