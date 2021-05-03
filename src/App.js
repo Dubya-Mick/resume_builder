@@ -137,23 +137,22 @@ class App extends Component {
   handleResponsibilityChange = (e, jobID, detailID) => {
     const {value} = e.target;
     const {work} = this.state;
-    const newWork = work.map(function(job) {
+    const newWork = work.map((job) => {
       if (job.id === jobID) {
-        return job.responsibilities.map(function(jobDetail) {
+        const newResponsibilities = job.responsibilities.map((jobDetail) => {
           if (jobDetail.id === detailID) {
             return {...jobDetail, detail: value};
           } else {
             return jobDetail;
           }
-        })
+        });
+        const newJob = {...job, responsibilities: newResponsibilities}
+        return newJob
       } else {
         return job;
       }
-    })
-
-    console.log(newWork)
-
-    this.setState({work: newWork})
+    });
+    this.setState({work: newWork});
   }
 
   addJob = () => {
