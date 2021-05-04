@@ -11,8 +11,8 @@ function HobbyForm(props) {
     } = props;
 
     return (
-        <div>
-            <div className="input-chunk">
+        <div className="input-chunk">
+            <div>
                 <Input
                     onChange={(e) => handleHobbiesChange(e, hobby.id)}
                     name="title"
@@ -20,7 +20,11 @@ function HobbyForm(props) {
                     value={hobby.title}
                 />
             </div>
-            <Delete content="Delete Hobby" clickHandler={() => handleDeleteHobby(hobby.id)} />
+            <Delete 
+                content="X" 
+                clickHandler={() => handleDeleteHobby(hobby.id)} 
+                styleClass="hobby-delete"
+            />
         </div>
     )
 }

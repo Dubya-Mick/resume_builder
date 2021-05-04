@@ -10,6 +10,8 @@ function WorkForm(props) {
         handleAddJob,
         handleDeleteJob,
         handleResponsibilityChange,
+        handleAddResponsibility,
+        handleDeleteResponsibility,
     } = props;
 
     const jobForms = work.map((job) => (
@@ -19,6 +21,8 @@ function WorkForm(props) {
                 handleWorkChange={handleWorkChange}
                 handleDeleteJob={handleDeleteJob}
                 handleResponsibilityChange={handleResponsibilityChange}
+                handleAddResponsibility={handleAddResponsibility}
+                handleDeleteResponsibility={handleDeleteResponsibility}
             />
         </div>
     ));

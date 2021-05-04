@@ -2,7 +2,7 @@
     width: 50vw;
     margin: 0 auto;
     font-family: 'Roboto Slab', serif; 
-    padding: 1rem 0;
+    padding: 2rem 0;
 }
 
 h1, h2 {
@@ -30,7 +30,8 @@ h1, h2 {
 }
 
 .input-chunk {
-    padding: 1rem;
+    position: relative;
+    padding: 1.5rem 2rem;
     border-radius: 5px;
     background: #ffffff;
     box-shadow:  5px 5px 10px #808080,

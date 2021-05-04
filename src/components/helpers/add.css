@@ -1,6 +1,6 @@
 .add {
     display: block;
-    margin: 0 auto;
+    margin: 1rem auto 0;
     height: 1.5rem;
     width: 100%;
     border: none;

@@ -1,5 +1,8 @@
 import React from 'react'
+import Add from '../helpers/Add';
+import Delete from '../helpers/Delete';
 import TextArea from '../helpers/TextArea';
+import './jobdetails.css';
 
 
 function JobDetailsForm(props) {
@@ -8,22 +11,33 @@ function JobDetailsForm(props) {
         jobDetails,
         jobID,
         handleResponsibilityChange,
+        handleAddResponsibility,
+        handleDeleteResponsibility,
     } = props;
 
 
     const detailsList = jobDetails.map((detail) => (
-        <TextArea
-        onChange={(e) => handleResponsibilityChange(e, jobID, detail.id)}
-        name="responsibilities"
-        placeholder="Responsibilities"
-        value={detail.detail}
-    />
+        <div key={detail.id} className="detail-and-delete">
+            <TextArea
+                onChange={(e) => handleResponsibilityChange(e, jobID, detail.id)}
+                name="responsibilities"
+                placeholder="Responsibilities"
+                value={detail.detail}
+            />
+            <Delete 
+                styleClass="detail-delete"
+                content="X" 
+                clickHandler={() => handleDeleteResponsibility(jobID, detail.id)} />
+        </div>
     ))
 
 
     return (
         <div>
-            {detailsList}
+            <div className="responsibility-wrapper">
+                {detailsList}
+            </div>
+            <Add content="Add Responsibility" clickHandler={() => handleAddResponsibility(jobID)}/>
         </div>
     )
 }

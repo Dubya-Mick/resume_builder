@@ -23,6 +23,8 @@ function CVForm(props) {
         handleAddHobby,
         handleDeleteHobby,
         handleResponsibilityChange,
+        handleAddResponsibility,
+        handleDeleteResponsibility,
         personal, 
         education,
         work, 
@@ -55,6 +57,8 @@ function CVForm(props) {
                     handleAddJob={handleAddJob}
                     handleDeleteJob={handleDeleteJob}
                     handleResponsibilityChange={handleResponsibilityChange}
+                    handleAddResponsibility={handleAddResponsibility}
+                    handleDeleteResponsibility={handleDeleteResponsibility}
                     
                 />
             </section>

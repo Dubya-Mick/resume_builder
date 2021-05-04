@@ -1,0 +1,11 @@
+.responsibility-wrapper {
+    display: grid;
+    gap: 5px;
+}
+
+
+.detail-and-delete {
+    position: relative;
+}
+
+

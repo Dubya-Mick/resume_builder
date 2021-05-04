@@ -134,6 +134,33 @@ class App extends Component {
     this.setState({work: newWork})
   }
 
+  deleteResponsibility = (jobID, detailID) => {
+    const {work} = this.state;
+    const newWork = work.map((job) => {
+      if (job.id === jobID) {
+        const newResponsibilities = job.responsibilities.filter((jobDetail) => jobDetail.id !== detailID);
+        return {...job, responsibilities: newResponsibilities}
+      } else {
+        return job;
+      }
+    });
+    this.setState({work: newWork})
+  }
+
+  addResponsibility = (id) => {
+    const {work} = this.state;
+    const newWork = work.map((job) => {
+      if (job.id === id) {
+        const newResponsibilities = job.responsibilities;
+        newResponsibilities.push({id: uniqid(), detail: ''});
+        return {...job, responsibilities: newResponsibilities};
+      } else {
+        return job;
+      }
+    })
+    this.setState({work: newWork})
+  }
+
   handleResponsibilityChange = (e, jobID, detailID) => {
     const {value} = e.target;
     const {work} = this.state;
@@ -259,6 +286,8 @@ class App extends Component {
             handleAddHobby={this.addHobby}
             handleDeleteHobby={this.deleteHobby}
             handleResponsibilityChange = {this.handleResponsibilityChange}
+            handleAddResponsibility = {this.addResponsibility}
+            handleDeleteResponsibility = {this.deleteResponsibility}
             personal={personalInfo}
             education={education}
             work={work}

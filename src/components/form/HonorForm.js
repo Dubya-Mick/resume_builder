@@ -11,8 +11,8 @@ function HonorForm(props) {
     } = props;
 
     return (
-        <div>
-            <div className="input-chunk from-to">
+        <div className="input-chunk">
+            <div className="from-to">
                 <Input
                     onChange={(e) => handleHonorsChange(e, honor.id)}
                     name="title"
@@ -26,7 +26,11 @@ function HonorForm(props) {
                     value={honor.year}
                 />
             </div>
-            <Delete content="Delete Honor" clickHandler={() => handleDeleteHonor(honor.id)} />
+            <Delete 
+                content="X" 
+                clickHandler={() => handleDeleteHonor(honor.id)} 
+                styleClass="honor-delete"
+            />
         </div>
     )
 }

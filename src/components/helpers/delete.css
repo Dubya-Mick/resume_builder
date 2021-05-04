@@ -1,12 +1,44 @@
-.delete {
+:root {
+    --delete-color: #e63946;
+}
+
+.detail-delete {
+    color: var(--delete-color);
     display: block;
-    margin: 0.5rem auto;
-    height: 1.5rem;
-    width: 100%;
-    cursor: pointer;
+    font-size: 1.5rem;
     border: none;
-    border-radius: 5px;
-    background: #ffffff;
-    box-shadow:  5px 5px 10px #808080,
-                 -5px -5px 10px #ffffff;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 0px;
+}
+
+.school-job-delete {
+    color: var(--delete-color);
+    font-size: 2rem;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.honor-delete {
+    color: var(--delete-color);
+    font-size: 2rem;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 24px;
+}
+
+.hobby-delete {
+    color: var(--delete-color);
+    font-size: 2rem;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 32px;
 }

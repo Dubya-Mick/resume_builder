@@ -2,11 +2,9 @@ import React from 'react'
 import './delete.css'
 
 function Delete(props) {
-    const {clickHandler, content} = props;
+    const {clickHandler, styleClass} = props;
     return (
-        <div>
-            <button onClick={clickHandler} className="delete">{content}</button>
-        </div>
+            <i onClick={clickHandler} className={`material-icons ${styleClass}`}>delete_forever</i> 
     )
 }
 

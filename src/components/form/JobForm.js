@@ -10,6 +10,8 @@ function JobForm(props) {
         handleWorkChange,
         handleDeleteJob,
         handleResponsibilityChange,
+        handleAddResponsibility,
+        handleDeleteResponsibility,
     } = props;
 
     return (
@@ -49,12 +51,19 @@ function JobForm(props) {
                 </div>
                 <JobDetailsForm
                     handleResponsibilityChange={handleResponsibilityChange}
+                    handleAddResponsibility={handleAddResponsibility}
+                    handleDeleteResponsibility={handleDeleteResponsibility}
                     jobDetails={job.responsibilities}
                     jobID={job.id}
                 />
+            <Delete 
+                content="X" 
+                clickHandler={() => handleDeleteJob(job.id)}
+                styleClass="school-job-delete"
+            />
 
         </div>           
-            <Delete content="Delete Job" clickHandler={() => handleDeleteJob(job.id)}/>
+
         </div>
     )
 }
