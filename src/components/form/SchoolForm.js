@@ -2,12 +2,16 @@ import React from 'react'
 import Delete from '../helpers/Delete';
 import Input from '../helpers/Input'
 import './cvform.css'
+import SchoolDetailsForm from './SchoolDetailsForm';
 
 function SchoolForm(props) {
     const {
         school, 
         handleSchoolChange, 
         handleDeleteSchool,
+        handleSchoolDetailChange,
+        handleAddSchoolDetail,
+        handleDeleteSchoolDetail,
     } = props;
     return (
         <div>
@@ -44,6 +48,14 @@ function SchoolForm(props) {
                         value={school.to}
                     />
                 </div>
+                <SchoolDetailsForm 
+                    handleSchoolDetailChange={handleSchoolDetailChange}
+                    handleAddSchoolDetail={handleAddSchoolDetail}
+                    handleDeleteSchoolDetail={handleDeleteSchoolDetail}
+                    schoolDetails={school.details}
+                    schoolID={school.id}
+
+                />
                 <Delete 
                     content="X" 
                     clickHandler={() => handleDeleteSchool(school.id)} 

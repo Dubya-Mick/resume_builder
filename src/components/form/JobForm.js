@@ -29,12 +29,6 @@ function JobForm(props) {
                     placeholder="Position"
                     value={job.position}
                 />
-                <Input
-                    onChange={(e) => handleWorkChange(e, job.id)}
-                    name="location"
-                    placeholder="Location"
-                    value={job.location}
-                />
                 <div className="from-to">
                     <Input
                         onChange={(e) => handleWorkChange(e, job.id)}
@@ -62,7 +56,7 @@ function JobForm(props) {
                 styleClass="school-job-delete"
             />
 
-        </div>           
+            </div>           
 
         </div>
     )

@@ -9,9 +9,12 @@ function Education(props) {
     ));
 
     return (
-        <div className="education-section">
-            <h1>Education</h1>
-            {educationSection}
+        <div>
+            <div className="title">Education</div>
+            <hr />
+            <div className="school-job-list">
+                {educationSection}
+            </div>
         </div>
     )
 }

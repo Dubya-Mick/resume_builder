@@ -3,19 +3,20 @@ import './cvheader.css'
 
 function CVHeader(props) {
 
-    const {name, title, email, phone} = props.personalInfo;
+    const {name, addressOne, addressTwo, email, phone} = props.personalInfo;
 
     return (
         <div className="cv-Header">
-            <div>
-                <h1>{name}</h1>
-                <h2>{title}</h2>
+            <div className="address">
+                <div>{addressOne}</div>
+                <div>{addressTwo}</div>
             </div>
             <div>
-                <ul>
-                    <li>Email: {email}</li>
-                    <li>Phone: {phone}</li>
-                </ul>
+                <div className="name">{name}</div>
+            </div>
+            <div className="phone-email">
+                <div>{phone}</div>
+                <div>{email}</div>
             </div>
         </div>
     )

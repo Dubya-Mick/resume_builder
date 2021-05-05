@@ -1,5 +1,6 @@
 import React from 'react'
 import Hobby from './Hobby';
+import './cvbody.css'
 
 function Hobbies(props) {
     const hobbies = props.hobbies;
@@ -10,7 +11,8 @@ function Hobbies(props) {
     ))
     return (
         <div>
-            <h3>Extracurriculars</h3>
+            <div className="title">Extracurriculars</div>
+            <hr />
             {hobbyList}
         </div>
     )

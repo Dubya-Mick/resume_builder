@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       personalInfo: {
         name: 'Scoobert Doobert', 
-        title: 'Burger Developer',
+        addressOne: '420 Cool Street, Apt 69',
+        addressTwo: 'Small Town, KY, 42020',
         email: 'scoob@gmail.com', 
         phone: '1800-Scoobin', 
       },
@@ -23,6 +24,7 @@ class App extends Component {
           location: 'Chicago, IL',
           from: '1982',
           to: '1986',
+          details: [{id: uniqid(), text: 'one'}, {id: uniqid(), text: 'two'}]
         },
         {
           id: uniqid(),
@@ -31,14 +33,14 @@ class App extends Component {
           location: 'Chicago, IL',
           from: '1978',
           to: '1982',
+          details: [{id: uniqid(), text: 'one'}, {id: uniqid(), text: 'two'}]
         }
       ],
       work: [
         {
           id: uniqid(),
           company: 'Scoob Burger Corp', 
-          position: 'CEO', 
-          location: 'London, KY', 
+          position: 'CEO',  
           from: 'May 2015', 
           to: 'Present',
           responsibilities: [{id: uniqid(), detail: 'one'}, {id: uniqid(), detail: 'two'}, {id: uniqid(), detail: 'three'}],
@@ -47,7 +49,6 @@ class App extends Component {
           id: uniqid(),
           company: 'Trunt Burger Inc.', 
           position: 'Intern', 
-          location: 'Paris, KY', 
           from: 'June 1986', 
           to: 'May 2015',
           responsibilities: [{id: uniqid(), detail: 'one'}, {id: uniqid(), detail: 'two'}, {id: uniqid(), detail: 'three'}],
@@ -86,7 +87,7 @@ class App extends Component {
     const {name, value} = e.target;
     const {personalInfo} = this.state;
     personalInfo[name] = value;
-    this.setState({personalInfo: personalInfo})
+    this.setState({personalInfo: personalInfo});
   }
 
   handleSchoolChange = (e, id) => {
@@ -118,6 +119,53 @@ class App extends Component {
   deleteSchool = (id) => {
     const {education} = this.state;
     const newEdu = education.filter((school) => school.id !== id);
+    this.setState({education: newEdu});
+  }
+
+  deleteSchoolDetail = (schoolID, detailID) => {
+    const {education} = this.state;
+    const newEdu = education.map((school) => {
+      if (school.id === schoolID) {
+        const newDetails = school.details.filter((detail) => detail.id !== detailID);
+        return {...school, details: newDetails};
+      } else {
+        return school;
+      }
+    });
+    this.setState({education: newEdu})
+  }
+
+  addSchoolDetail = (id) => {
+    const {education} = this.state;
+    const newEdu = education.map((school) => {
+      if (school.id === id) {
+        const newDetails = school.details;
+        newDetails.push({id: uniqid(), text: ''});
+        return {...school, details: newDetails}
+      } else {
+        return school;
+      }
+    });
+    this.setState({education: newEdu});
+  }
+
+  handleSchoolDetailChange = (e, schoolID, detailID) => {
+    const {value} = e.target;
+    const {education} = this.state;
+    const newEdu = education.map((school) => {
+      if (school.id === schoolID) {
+        const newDetails = school.details.map((detail) => {
+          if (detail.id === detailID) {
+            return {...detail, text: value};
+          } else {
+            return detail;
+          }
+        });
+        return {...school, details: newDetails};
+      } else {
+        return school;
+      }
+    });
     this.setState({education: newEdu});
   }
 
@@ -187,8 +235,7 @@ class App extends Component {
     work.push({
       id: uniqid(),
       company: '', 
-      position: '', 
-      location: '', 
+      position: '',  
       from: '', 
       to: '',
       responsibilities: '',
@@ -269,13 +316,16 @@ class App extends Component {
     const {personalInfo, education, work, honors, hobbies} = this.state;
     
     return (
-      <div className="mainCV">
+      <div className="form-and-cv-main">
         <div className="cv-form-container">
           <CVForm
             handlePersonalChange={this.handlePersonalChange}
             handleSchoolChange={this.handleSchoolChange}
             handleAddSchool={this.addSchool}
             handleDeleteSchool={this.deleteSchool}
+            handleDeleteSchoolDetail={this.deleteSchoolDetail}
+            handleAddSchoolDetail={this.addSchoolDetail}
+            handleSchoolDetailChange={this.handleSchoolDetailChange}
             handleWorkChange={this.handleWorkChange}
             handleAddJob={this.addJob}
             handleDeleteJob={this.deleteJob}
@@ -296,7 +346,9 @@ class App extends Component {
           
           />
         </div>
-        <CVBody CVInfo={this.state}/>
+        <div className="cv-view-container">
+          <CVBody CVInfo={this.state}/>
+        </div>
       </div>
     )
   }

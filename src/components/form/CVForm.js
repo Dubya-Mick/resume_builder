@@ -13,6 +13,9 @@ function CVForm(props) {
         handleSchoolChange, 
         handleAddSchool,
         handleDeleteSchool,
+        handleSchoolDetailChange,
+        handleAddSchoolDetail,
+        handleDeleteSchoolDetail,
         handleWorkChange,
         handleAddJob,
         handleDeleteJob,
@@ -47,6 +50,9 @@ function CVForm(props) {
                     handleSchoolChange={handleSchoolChange}
                     handleAddSchool={handleAddSchool}
                     handleDeleteSchool={handleDeleteSchool}
+                    handleSchoolDetailChange={handleSchoolDetailChange}
+                    handleAddSchoolDetail={handleAddSchoolDetail}
+                    handleDeleteSchoolDetail={handleDeleteSchoolDetail}
                 />
             </section>
             <section className="section">

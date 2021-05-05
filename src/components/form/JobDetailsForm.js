@@ -2,7 +2,7 @@ import React from 'react'
 import Add from '../helpers/Add';
 import Delete from '../helpers/Delete';
 import TextArea from '../helpers/TextArea';
-import './jobdetails.css';
+import './details.css';
 
 
 function JobDetailsForm(props) {
@@ -34,7 +34,7 @@ function JobDetailsForm(props) {
 
     return (
         <div>
-            <div className="responsibility-wrapper">
+            <div className="detail-wrapper">
                 {detailsList}
             </div>
             <Add content="Add Responsibility" clickHandler={() => handleAddResponsibility(jobID)}/>

@@ -12,7 +12,8 @@ function Honors(props) {
 
     return (
         <div>
-            <h3>Honors</h3>
+            <div className="title">Honors</div>
+            <hr />
             {honorList}
         </div>
     )

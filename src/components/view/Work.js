@@ -11,8 +11,11 @@ function Work(props) {
 
     return (
         <div>
-            <h1>Work Experience</h1>
-            {workSection}
+            <div className="title">Work Experience</div>
+            <hr />
+            <div className="school-job-list">
+                {workSection}
+            </div>
         </div>
     )
 }

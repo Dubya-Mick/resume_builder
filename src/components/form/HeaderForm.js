@@ -14,9 +14,15 @@ function HeaderForm(props) {
             />
             <Input 
                 onChange = {(e) => handlePersonalChange(e)}
-                name='title'
-                placeholder='Current Role or Title'
-                value={personal.title}
+                name='addressOne'
+                placeholder='Street'
+                value={personal.addressOne}
+            />
+            <Input 
+                onChange = {(e) => handlePersonalChange(e)}
+                name='addressTwo'
+                placeholder='Country/Region/City'
+                value={personal.addressTwo}
             />
             <Input 
                 onChange = {(e) => handlePersonalChange(e)}

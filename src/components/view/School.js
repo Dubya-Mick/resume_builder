@@ -2,11 +2,20 @@ import React from 'react'
 
 function School(props) {
     const schoolInfo = props.schoolInfo;
+    const details = schoolInfo.details.map((detail) => (
+        <li key={detail.id}>{detail.text}</li>
+    ));
     return (
         <div>
-            <h3>{schoolInfo.schoolName}</h3>
-            <p>{schoolInfo.major}</p>
-            <span> {schoolInfo.location}, {schoolInfo.from} - {schoolInfo.to}</span>
+            <div className="job-school-title">
+                <div className="position-location">{schoolInfo.location}</div>
+                <div>{schoolInfo.schoolName}</div>
+                <div className="dates">{schoolInfo.from} - {schoolInfo.to}</div>
+            </div>
+                <i>{schoolInfo.major}</i>
+                <div className="list-items">
+                    {details}
+                </div>
         </div>
     )
 }

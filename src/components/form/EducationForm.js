@@ -9,6 +9,9 @@ function EducationForm(props) {
         handleSchoolChange,
         handleAddSchool,
         handleDeleteSchool,
+        handleSchoolDetailChange,
+        handleAddSchoolDetail,
+        handleDeleteSchoolDetail,
     } = props;
 
     const schoolForms = education.map((school) => (
@@ -17,6 +20,9 @@ function EducationForm(props) {
                 school={school}
                 handleSchoolChange={handleSchoolChange}
                 handleDeleteSchool={handleDeleteSchool}
+                handleSchoolDetailChange={handleSchoolDetailChange}
+                handleAddSchoolDetail={handleAddSchoolDetail}
+                handleDeleteSchoolDetail={handleDeleteSchoolDetail}
             />
         </div>
     ));
