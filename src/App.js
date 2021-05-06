@@ -1,8 +1,12 @@
-import React, { Component } from 'react'
-import uniqid from 'uniqid'
-import './App.css'
-import CVForm from './components/form/CVForm'
-import CVBody from './components/view/CVBody'
+import React, { Component } from 'react';
+import uniqid from 'uniqid';
+import './App.css';
+import CVForm from './components/form/CVForm';
+import CVBody from './components/view/CVBody';
+import ReactToPrint from 'react-to-print';
+import AppHeader from './AppHeader';
+
+
 
 class App extends Component {
   constructor(props) {
@@ -316,38 +320,46 @@ class App extends Component {
     const {personalInfo, education, work, honors, hobbies} = this.state;
     
     return (
-      <div className="form-and-cv-main">
-        <div className="cv-form-container">
-          <CVForm
-            handlePersonalChange={this.handlePersonalChange}
-            handleSchoolChange={this.handleSchoolChange}
-            handleAddSchool={this.addSchool}
-            handleDeleteSchool={this.deleteSchool}
-            handleDeleteSchoolDetail={this.deleteSchoolDetail}
-            handleAddSchoolDetail={this.addSchoolDetail}
-            handleSchoolDetailChange={this.handleSchoolDetailChange}
-            handleWorkChange={this.handleWorkChange}
-            handleAddJob={this.addJob}
-            handleDeleteJob={this.deleteJob}
-            handleHonorsChange={this.handleHonorsChange}
-            handleAddHonor={this.addHonor}
-            handleDeleteHonor={this.deleteHonor}
-            handleHobbiesChange={this.handleHobbiesChange}
-            handleAddHobby={this.addHobby}
-            handleDeleteHobby={this.deleteHobby}
-            handleResponsibilityChange = {this.handleResponsibilityChange}
-            handleAddResponsibility = {this.addResponsibility}
-            handleDeleteResponsibility = {this.deleteResponsibility}
-            personal={personalInfo}
-            education={education}
-            work={work}
-            honors={honors}
-            hobbies={hobbies}
-          
+      <div>
+        <AppHeader />
+        <div className="form-and-cv-main">
+          <div className="cv-form-container">
+            <CVForm
+              handlePersonalChange={this.handlePersonalChange}
+              handleSchoolChange={this.handleSchoolChange}
+              handleAddSchool={this.addSchool}
+              handleDeleteSchool={this.deleteSchool}
+              handleDeleteSchoolDetail={this.deleteSchoolDetail}
+              handleAddSchoolDetail={this.addSchoolDetail}
+              handleSchoolDetailChange={this.handleSchoolDetailChange}
+              handleWorkChange={this.handleWorkChange}
+              handleAddJob={this.addJob}
+              handleDeleteJob={this.deleteJob}
+              handleHonorsChange={this.handleHonorsChange}
+              handleAddHonor={this.addHonor}
+              handleDeleteHonor={this.deleteHonor}
+              handleHobbiesChange={this.handleHobbiesChange}
+              handleAddHobby={this.addHobby}
+              handleDeleteHobby={this.deleteHobby}
+              handleResponsibilityChange = {this.handleResponsibilityChange}
+              handleAddResponsibility = {this.addResponsibility}
+              handleDeleteResponsibility = {this.deleteResponsibility}
+              personal={personalInfo}
+              education={education}
+              work={work}
+              honors={honors}
+              hobbies={hobbies}
+            />
+          </div>
+          <div>
+          <ReactToPrint
+                trigger={() => <button className="print">Print or Save Resume as PDF</button>}
+                content={() => this.componentRef}
           />
-        </div>
-        <div className="cv-view-container">
-          <CVBody CVInfo={this.state}/>
+            <div className="cv-view-container">
+                <CVBody CVInfo={this.state} ref={(el) => (this.componentRef = el)}/>
+            </div>
+          </div>
         </div>
       </div>
     )

@@ -13,9 +13,9 @@ function School(props) {
                 <div className="dates">{schoolInfo.from} - {schoolInfo.to}</div>
             </div>
                 <i>{schoolInfo.major}</i>
-                <div className="list-items">
+                <ul className="list-items">
                     {details}
-                </div>
+                </ul>
         </div>
     )
 }

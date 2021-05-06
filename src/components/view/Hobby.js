@@ -3,9 +3,9 @@ import React from 'react'
 function Hobby(props) {
     const {hobby} = props;
     return (
-        <div>
+        <span>
             {hobby.title}
-        </div>
+        </span>
     )
 }
 

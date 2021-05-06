@@ -4,16 +4,47 @@
     background-color: #a8dadc;
 }
 
+.header {
+    font-family: 'Roboto Slab', serif; 
+    height: 4rem;
+    width: 100%;
+    top: 0;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-title {
+    width: 20rem;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.github-etc {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    margin-right: 1rem;
+}
+
 .form-and-cv-main {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 5rem;
-    min-height: 100vh;
+    gap: 1rem;
 }
 
 .cv-form-container {
     width: 65vw;
-    margin: 2rem auto;
+    margin: 4rem auto;
     padding-bottom: 1rem;
     border-radius: 5px;
     background: #ffffff;
@@ -22,9 +53,9 @@
 }
 
 .cv-view-container {
-    width: 85vw;
-    min-height: 60rem;
-    margin: 0 auto;
+    width: 75vw;
+    height: 60rem;
+    margin: 0 auto 2rem auto;
     background: #ffffff;
     box-shadow:  16px 16px 32px #808080,
                  -16px -16px 32px #a8dadc;

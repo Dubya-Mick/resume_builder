@@ -14,9 +14,9 @@ function Job(props) {
                 <div>{jobInfo.company}</div>
                 <div className="dates">{jobInfo.from} - {jobInfo.to}</div>
             </div>
-                <div className="list-items">
+                <ul className="list-items">
                     {responsibilities}
-                </div>
+                </ul>
         </div>
     )
 }
