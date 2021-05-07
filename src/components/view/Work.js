@@ -7,17 +7,21 @@ function Work(props) {
 
     const workSection = workInfo.map((job) => (
         <Job key={uniqid()} jobInfo={job}/>
-    ))
+    ));
 
-    return (
-        <div>
-            <div className="title">Work Experience</div>
-            <hr />
-            <div className="school-job-list">
-                {workSection}
+    if (workSection.length > 0) {
+        return (
+            <div>
+                <div className="title">Work Experience</div>
+                <hr />
+                <div className="school-job-list">
+                    {workSection}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+    return null;
+
 }
 
 export default Work

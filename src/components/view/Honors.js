@@ -8,15 +8,20 @@ function Honors(props) {
         <div key={honor.id}>
             <Honor honor={honor}/>
         </div>
-    ))
+    ));
 
-    return (
-        <div>
-            <div className="title">Honors</div>
-            <hr />
-            {honorList}
-        </div>
-    )
+    if (honorList.length > 0) {
+        return (
+            <div>
+                <div className="title">Honors</div>
+                <hr />
+                {honorList}
+            </div>
+        )
+    }
+    return null;
+
+
 }
 
 export default Honors

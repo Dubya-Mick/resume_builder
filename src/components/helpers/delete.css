@@ -1,5 +1,6 @@
 :root {
-    --delete-color: #e63946;
+    --delete-color: black;
+    --delete-hover-color: #e63946
 }
 
 .detail-delete {
@@ -41,4 +42,20 @@
     position: absolute;
     right: 0;
     top: 32px;
+}
+
+.detail-delete:hover {
+    color: var(--delete-hover-color);
+}
+
+.school-job-delete:hover {
+    color: var(--delete-hover-color);
+}
+
+.honor-delete:hover {
+    color: var(--delete-hover-color);
+}
+
+.hobby-delete:hover {
+    color: var(--delete-hover-color);
 }

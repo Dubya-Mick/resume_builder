@@ -4,7 +4,8 @@ import './App.css';
 import CVForm from './components/form/CVForm';
 import CVBody from './components/view/CVBody';
 import ReactToPrint from 'react-to-print';
-import AppHeader from './AppHeader';
+import AppHeader from './components/AppHeader';
+import OrderChoice from './components/OrderChoice';
 
 
 
@@ -13,78 +14,58 @@ class App extends Component {
     super(props)
   
     this.state = {
+      eduFirst: true,
+      hobbiesFirst: false,
       personalInfo: {
-        name: 'Scoobert Doobert', 
-        addressOne: '420 Cool Street, Apt 69',
-        addressTwo: 'Small Town, KY, 42020',
-        email: 'scoob@gmail.com', 
-        phone: '1800-Scoobin', 
+        name: '', 
+        addressOne: '',
+        addressTwo: '',
+        email: '', 
+        phone: '', 
       },
       education: [
         {
           id: uniqid(),
-          schoolName: 'Burger University',
-          major: 'B.S. Burger Science',
-          location: 'Chicago, IL',
-          from: '1982',
-          to: '1986',
-          details: [{id: uniqid(), text: 'one'}, {id: uniqid(), text: 'two'}]
+          schoolName: '',
+          major: '',
+          location: '',
+          from: '',
+          to: '',
+          details: [{id: uniqid(), text: ''}]
         },
-        {
-          id: uniqid(),
-          schoolName: 'Burger High',
-          major: 'Burger GED',
-          location: 'Chicago, IL',
-          from: '1978',
-          to: '1982',
-          details: [{id: uniqid(), text: 'one'}, {id: uniqid(), text: 'two'}]
-        }
       ],
       work: [
         {
           id: uniqid(),
-          company: 'Scoob Burger Corp', 
-          position: 'CEO',  
-          from: 'May 2015', 
-          to: 'Present',
-          responsibilities: [{id: uniqid(), detail: 'one'}, {id: uniqid(), detail: 'two'}, {id: uniqid(), detail: 'three'}],
+          company: '', 
+          position: '',  
+          from: '', 
+          to: '',
+          responsibilities: [{id: uniqid(), detail: ''}],
         },
-        {
-          id: uniqid(),
-          company: 'Trunt Burger Inc.', 
-          position: 'Intern', 
-          from: 'June 1986', 
-          to: 'May 2015',
-          responsibilities: [{id: uniqid(), detail: 'one'}, {id: uniqid(), detail: 'two'}, {id: uniqid(), detail: 'three'}],
-        }
       ],
       honors: [
         {
           id: uniqid(),
-          title: 'Burger of the Year',
-          year: '2018',
+          title: '',
+          year: '',
         },
-        {
-          id: uniqid(),
-          title: 'Most likely to grill',
-          year: '1980',
-        }
       ],
       hobbies: [
         {
           id: uniqid(),
-          title: 'Grilling'
-        },
-        {
-          id: uniqid(),
-          title: 'Pool'
-        },
-        {
-          id: uniqid(),
-          title: 'Business'
+          title: ''
         },
       ]
     }
+  }
+
+  handleEduCheckBoxChange = (e) => {
+    this.setState({eduFirst: e.target.checked});
+  }
+
+  handleHobbyCheckBoxChange = (e) => {
+    this.setState({hobbiesFirst: e.target.checked});
   }
 
   handlePersonalChange = (e) => {
@@ -116,6 +97,7 @@ class App extends Component {
       location: '',
       from: '',
       to: '',
+      details: [{id: uniqid(), text: ''}],
     });
     this.setState({education: education});
   }
@@ -136,7 +118,7 @@ class App extends Component {
         return school;
       }
     });
-    this.setState({education: newEdu})
+    this.setState({education: newEdu});
   }
 
   addSchoolDetail = (id) => {
@@ -183,7 +165,7 @@ class App extends Component {
         return job;
       }
     });
-    this.setState({work: newWork})
+    this.setState({work: newWork});
   }
 
   deleteResponsibility = (jobID, detailID) => {
@@ -196,7 +178,7 @@ class App extends Component {
         return job;
       }
     });
-    this.setState({work: newWork})
+    this.setState({work: newWork});
   }
 
   addResponsibility = (id) => {
@@ -210,7 +192,7 @@ class App extends Component {
         return job;
       }
     })
-    this.setState({work: newWork})
+    this.setState({work: newWork});
   }
 
   handleResponsibilityChange = (e, jobID, detailID) => {
@@ -242,15 +224,15 @@ class App extends Component {
       position: '',  
       from: '', 
       to: '',
-      responsibilities: '',
+      responsibilities: [{id: uniqid(), detail: ''}],
     });
-    this.setState({work: work})
+    this.setState({work: work});
   }
 
   deleteJob = (id) => {
     const {work} = this.state;
     const newWork = work.filter((job) => job.id !== id);
-    this.setState({work: newWork})
+    this.setState({work: newWork});
   }
 
   handleHonorsChange = (e, id) => {
@@ -263,7 +245,7 @@ class App extends Component {
         return honor;
       }
     });
-    this.setState({honors: newHonors})
+    this.setState({honors: newHonors});
   }
 
   addHonor = () => {
@@ -279,7 +261,7 @@ class App extends Component {
   deleteHonor = (id) => {
     const {honors} = this.state;
     const newHonors = honors.filter((honor) => honor.id !== id);
-    this.setState({honors: newHonors})
+    this.setState({honors: newHonors});
   }
 
   handleHobbiesChange = (e, id) => {
@@ -292,7 +274,7 @@ class App extends Component {
         return hobby;
       }
     });
-    this.setState({hobbies: newHobbies})
+    this.setState({hobbies: newHobbies});
   }
 
   addHobby = () => {
@@ -314,10 +296,8 @@ class App extends Component {
     document.body.classList.add('body-style')
   }
 
-
-
   render() {
-    const {personalInfo, education, work, honors, hobbies} = this.state;
+    const {eduFirst, hobbiesFirst, personalInfo, education, work, honors, hobbies} = this.state;
     
     return (
       <div>
@@ -352,6 +332,12 @@ class App extends Component {
             />
           </div>
           <div>
+          <OrderChoice 
+            eduFirst={eduFirst}
+            hobbiesFirst={hobbiesFirst}
+            handleEduCheckBoxChange={this.handleEduCheckBoxChange}
+            handleHobbyCheckBoxChange={this.handleHobbyCheckBoxChange}
+          />
           <ReactToPrint
                 trigger={() => <button className="print">Print or Save Resume as PDF</button>}
                 content={() => this.componentRef}

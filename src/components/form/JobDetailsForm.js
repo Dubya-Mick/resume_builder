@@ -21,7 +21,7 @@ function JobDetailsForm(props) {
             <TextArea
                 onChange={(e) => handleResponsibilityChange(e, jobID, detail.id)}
                 name="responsibilities"
-                placeholder="Responsibilities"
+                placeholder="Responsibility"
                 value={detail.detail}
             />
             <Delete 

@@ -8,14 +8,19 @@ function Hobbies(props) {
         <div key={hobby.id}>
             <Hobby hobby={hobby} />
         </div>
-    ))
-    return (
-        <div>
-            <div className="title">Extracurriculars</div>
-            <hr />
-            {hobbyList}
-        </div>
-    )
+    ));
+
+    if (hobbyList.length > 0) {
+        return (
+            <div>
+                <div className="title">Extracurriculars</div>
+                <hr />
+                {hobbyList}
+            </div>
+        )
+    }
+    return null;
+
 }
 
 export default Hobbies
