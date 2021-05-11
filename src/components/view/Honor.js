@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 function Honor(props) {
-    const {honor} = props;
-    return (
-        <div>
-            {`${honor.title} (${honor.year})`}
-        </div>
-    )
+  const { honor } = props;
+  return (
+    <div>
+      {`${honor.title} (${honor.year})`}
+    </div>
+  );
 }
 
-export default Honor
+export default Honor;

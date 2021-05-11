@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 function Hobby(props) {
-    const {hobby} = props;
-    return (
-        <span>
-            {hobby.title}
-        </span>
-    )
+  const { hobby } = props;
+  return (
+    <span>
+      {hobby.title}
+    </span>
+  );
 }
 
-export default Hobby
+export default Hobby;
