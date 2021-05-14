@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import uniqid from 'uniqid';
 import './App.css';
 import CVForm from './components/form/CVForm';
@@ -7,77 +7,72 @@ import ReactToPrint from 'react-to-print';
 import AppHeader from './components/AppHeader';
 import OrderChoice from './components/OrderChoice';
 
-
-
-class App extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-      eduFirst: true,
-      hobbiesFirst: false,
-      personalInfo: {
-        name: '', 
-        addressOne: '',
-        addressTwo: '',
-        email: '', 
-        phone: '', 
+function App() {
+  const [cv, setCV] = useState({
+    eduFirst: true,
+    hobbiesFirst: false,
+    personalInfo: {
+      name: '', 
+      addressOne: '',
+      addressTwo: '',
+      email: '', 
+      phone: '', 
+    },
+    education: [
+      {
+        id: uniqid(),
+        schoolName: '',
+        major: '',
+        location: '',
+        from: '',
+        to: '',
+        details: [{id: uniqid(), text: ''}],
       },
-      education: [
-        {
-          id: uniqid(),
-          schoolName: '',
-          major: '',
-          location: '',
-          from: '',
-          to: '',
-          details: [{id: uniqid(), text: ''}]
-        },
-      ],
-      work: [
-        {
-          id: uniqid(),
-          company: '', 
-          position: '',  
-          from: '', 
-          to: '',
-          responsibilities: [{id: uniqid(), detail: ''}],
-        },
-      ],
-      honors: [
-        {
-          id: uniqid(),
-          title: '',
-          year: '',
-        },
-      ],
-      hobbies: [
-        {
-          id: uniqid(),
-          title: ''
-        },
-      ]
-    }
+    ],
+    work: [
+      {
+        id: uniqid(),
+        company: '', 
+        position: '',  
+        from: '', 
+        to: '',
+        responsibilities: [{id: uniqid(), detail: ''}],
+      },
+    ],
+    honors: [
+      {
+        id: uniqid(),
+        title: '',
+        year: '',
+      },
+    ],
+    hobbies: [
+      {
+        id: uniqid(),
+        title: '',
+      },
+    ]
+  })
+
+  // checkboxes controlling order of cv componenents
+  const handleEduCheckBoxChange = (e) => {
+    setCV({...cv, eduFirst: e.target.checked});
   }
 
-  handleEduCheckBoxChange = (e) => {
-    this.setState({eduFirst: e.target.checked});
+  const handleHobbyCheckBoxChange = (e) => {
+    setCV({...cv, hobbiesFirst: e.target.checked});
   }
 
-  handleHobbyCheckBoxChange = (e) => {
-    this.setState({hobbiesFirst: e.target.checked});
-  }
-
-  handlePersonalChange = (e) => {
+  const handlePersonalChange = (e) => {
     const {name, value} = e.target;
-    const {personalInfo} = this.state;
+    const {personalInfo} = cv;
     personalInfo[name] = value;
-    this.setState({personalInfo: personalInfo});
+    setCV({...cv, personalInfo: personalInfo});
   }
 
-  handleSchoolChange = (e, id) => {
+  const handleSchoolChange = (e, id) => {
     const {name, value} = e.target;
-    const {education} = this.state;
+    const {education} = cv;
     const newEdu = education.map(function(school) {
       if (school.id === id) {
         // object spread operator for modifying only one property
@@ -85,11 +80,11 @@ class App extends Component {
       } 
       return school;
     });
-    this.setState({education: newEdu});
+    setCV({...cv, education: newEdu});
   }
 
-  addSchool = () => {
-    const {education} = this.state;
+  const addSchool = () => {
+    const {education} = cv;
     education.push({
       id: uniqid(),
       schoolName: '',
@@ -99,17 +94,17 @@ class App extends Component {
       to: '',
       details: [{id: uniqid(), text: ''}],
     });
-    this.setState({education: education});
+    setCV({...cv, education: education});
   }
 
-  deleteSchool = (id) => {
-    const {education} = this.state;
+  const deleteSchool = (id) => {
+    const {education} = cv;
     const newEdu = education.filter((school) => school.id !== id);
-    this.setState({education: newEdu});
+    setCV({...cv, education: newEdu});
   }
 
-  deleteSchoolDetail = (schoolID, detailID) => {
-    const {education} = this.state;
+  const deleteSchoolDetail = (schoolID, detailID) => {
+    const {education} = cv;
     const newEdu = education.map((school) => {
       if (school.id === schoolID) {
         const newDetails = school.details.filter((detail) => detail.id !== detailID);
@@ -118,11 +113,11 @@ class App extends Component {
         return school;
       }
     });
-    this.setState({education: newEdu});
+    setCV({...cv, education: newEdu});
   }
 
-  addSchoolDetail = (id) => {
-    const {education} = this.state;
+  const addSchoolDetail = (id) => {
+    const {education} = cv;
     const newEdu = education.map((school) => {
       if (school.id === id) {
         const newDetails = school.details;
@@ -132,12 +127,12 @@ class App extends Component {
         return school;
       }
     });
-    this.setState({education: newEdu});
+    setCV({...cv, education: newEdu});
   }
 
-  handleSchoolDetailChange = (e, schoolID, detailID) => {
+  const handleSchoolDetailChange = (e, schoolID, detailID) => {
     const {value} = e.target;
-    const {education} = this.state;
+    const {education} = cv;
     const newEdu = education.map((school) => {
       if (school.id === schoolID) {
         const newDetails = school.details.map((detail) => {
@@ -152,12 +147,12 @@ class App extends Component {
         return school;
       }
     });
-    this.setState({education: newEdu});
+    setCV({...cv, education: newEdu});
   }
 
-  handleWorkChange = (e, id) => {
+  const handleWorkChange = (e, id) => {
     const {name, value} = e.target;
-    const {work} = this.state;
+    const {work} = cv;
     const newWork = work.map(function(job) {
       if (job.id === id) {
         return {...job, [name]: value}
@@ -165,11 +160,11 @@ class App extends Component {
         return job;
       }
     });
-    this.setState({work: newWork});
+    setCV({...cv, work: newWork});
   }
 
-  deleteResponsibility = (jobID, detailID) => {
-    const {work} = this.state;
+  const deleteResponsibility = (jobID, detailID) => {
+    const {work} = cv;
     const newWork = work.map((job) => {
       if (job.id === jobID) {
         const newResponsibilities = job.responsibilities.filter((jobDetail) => jobDetail.id !== detailID);
@@ -178,11 +173,11 @@ class App extends Component {
         return job;
       }
     });
-    this.setState({work: newWork});
+    setCV({...cv, work: newWork});
   }
 
-  addResponsibility = (id) => {
-    const {work} = this.state;
+  const addResponsibility = (id) => {
+    const {work} = cv;
     const newWork = work.map((job) => {
       if (job.id === id) {
         const newResponsibilities = job.responsibilities;
@@ -192,12 +187,12 @@ class App extends Component {
         return job;
       }
     })
-    this.setState({work: newWork});
+    setCV({...cv, work: newWork});
   }
 
-  handleResponsibilityChange = (e, jobID, detailID) => {
+  const handleResponsibilityChange = (e, jobID, detailID) => {
     const {value} = e.target;
-    const {work} = this.state;
+    const {work} = cv;
     const newWork = work.map((job) => {
       if (job.id === jobID) {
         const newResponsibilities = job.responsibilities.map((jobDetail) => {
@@ -213,11 +208,11 @@ class App extends Component {
         return job;
       }
     });
-    this.setState({work: newWork});
+    setCV({...cv, work: newWork});
   }
 
-  addJob = () => {
-    const {work} = this.state;
+  const addJob = () => {
+    const {work} = cv;
     work.push({
       id: uniqid(),
       company: '', 
@@ -226,18 +221,18 @@ class App extends Component {
       to: '',
       responsibilities: [{id: uniqid(), detail: ''}],
     });
-    this.setState({work: work});
+    setCV({...cv, work: work});
   }
 
-  deleteJob = (id) => {
-    const {work} = this.state;
+  const deleteJob = (id) => {
+    const {work} = cv;
     const newWork = work.filter((job) => job.id !== id);
-    this.setState({work: newWork});
+    setCV({...cv, work: newWork});
   }
 
-  handleHonorsChange = (e, id) => {
+  const handleHonorsChange = (e, id) => {
     const {name, value} = e.target;
-    const {honors} = this.state;
+    const {honors} = cv;
     const newHonors = honors.map(function(honor) {
       if (honor.id === id) {
         return {...honor, [name]: value};
@@ -245,28 +240,28 @@ class App extends Component {
         return honor;
       }
     });
-    this.setState({honors: newHonors});
+    setCV({...cv, honors: newHonors});
   }
 
-  addHonor = () => {
-    const {honors} = this.state;
+  const addHonor = () => {
+    const {honors} = cv;
     honors.push({
       id: uniqid(),
       title: '',
       year: '',
     });
-    this.setState({honors: honors});
+    setCV({...cv, honors: honors});
   }
 
-  deleteHonor = (id) => {
-    const {honors} = this.state;
+  const deleteHonor = (id) => {
+    const {honors} = cv;
     const newHonors = honors.filter((honor) => honor.id !== id);
-    this.setState({honors: newHonors});
+    setCV({...cv, honors: newHonors});
   }
 
-  handleHobbiesChange = (e, id) => {
+  const handleHobbiesChange = (e, id) => {
     const {name, value} = e.target;
-    const {hobbies} = this.state;
+    const {hobbies} = cv;
     const newHobbies = hobbies.map(function(hobby) {
       if (hobby.id === id) {
         return {...hobby, [name]: value};
@@ -274,82 +269,82 @@ class App extends Component {
         return hobby;
       }
     });
-    this.setState({hobbies: newHobbies});
+    setCV({...cv, hobbies: newHobbies});
   }
 
-  addHobby = () => {
-    const {hobbies} = this.state;
+  const addHobby = () => {
+    const {hobbies} = cv;
     hobbies.push({
       id: uniqid(),
       title: ''
     });
-    this.setState({hobbies: hobbies});
+    setCV({...cv, hobbies: hobbies});
   }
 
-  deleteHobby = (id) => {
-    const {hobbies} = this.state;
+  const deleteHobby = (id) => {
+    const {hobbies} = cv;
     const newHobbies = hobbies.filter((hobby) => hobby.id !== id);
-    this.setState({hobbies: newHobbies});
+    setCV({...cv, hobbies: newHobbies});
   }
 
-  componentDidMount() {
+  useEffect(() => {
     document.body.classList.add('body-style')
-  }
+  }, [])
 
-  render() {
-    const {eduFirst, hobbiesFirst, personalInfo, education, work, honors, hobbies} = this.state;
-    
-    return (
-      <div>
-        <AppHeader />
-        <div className="form-and-cv-main">
-          <div className="cv-form-container">
-            <CVForm
-              handlePersonalChange={this.handlePersonalChange}
-              handleSchoolChange={this.handleSchoolChange}
-              handleAddSchool={this.addSchool}
-              handleDeleteSchool={this.deleteSchool}
-              handleDeleteSchoolDetail={this.deleteSchoolDetail}
-              handleAddSchoolDetail={this.addSchoolDetail}
-              handleSchoolDetailChange={this.handleSchoolDetailChange}
-              handleWorkChange={this.handleWorkChange}
-              handleAddJob={this.addJob}
-              handleDeleteJob={this.deleteJob}
-              handleHonorsChange={this.handleHonorsChange}
-              handleAddHonor={this.addHonor}
-              handleDeleteHonor={this.deleteHonor}
-              handleHobbiesChange={this.handleHobbiesChange}
-              handleAddHobby={this.addHobby}
-              handleDeleteHobby={this.deleteHobby}
-              handleResponsibilityChange = {this.handleResponsibilityChange}
-              handleAddResponsibility = {this.addResponsibility}
-              handleDeleteResponsibility = {this.deleteResponsibility}
-              personal={personalInfo}
-              education={education}
-              work={work}
-              honors={honors}
-              hobbies={hobbies}
-            />
-          </div>
-          <div>
-          <OrderChoice 
-            eduFirst={eduFirst}
-            hobbiesFirst={hobbiesFirst}
-            handleEduCheckBoxChange={this.handleEduCheckBoxChange}
-            handleHobbyCheckBoxChange={this.handleHobbyCheckBoxChange}
+  const {eduFirst, hobbiesFirst, personalInfo, education, work, honors, hobbies} = cv;
+  // useRef needed here for React to Print
+  const componentRef = useRef();
+  
+  return (
+    <div>
+      <AppHeader />
+      <div className="form-and-cv-main">
+        <div className="cv-form-container">
+          <CVForm
+            handlePersonalChange={handlePersonalChange}
+            handleSchoolChange={handleSchoolChange}
+            handleAddSchool={addSchool}
+            handleDeleteSchool={deleteSchool}
+            handleDeleteSchoolDetail={deleteSchoolDetail}
+            handleAddSchoolDetail={addSchoolDetail}
+            handleSchoolDetailChange={handleSchoolDetailChange}
+            handleWorkChange={handleWorkChange}
+            handleAddJob={addJob}
+            handleDeleteJob={deleteJob}
+            handleHonorsChange={handleHonorsChange}
+            handleAddHonor={addHonor}
+            handleDeleteHonor={deleteHonor}
+            handleHobbiesChange={handleHobbiesChange}
+            handleAddHobby={addHobby}
+            handleDeleteHobby={deleteHobby}
+            handleResponsibilityChange={handleResponsibilityChange}
+            handleAddResponsibility={addResponsibility}
+            handleDeleteResponsibility={deleteResponsibility}
+            personal={personalInfo}
+            education={education}
+            work={work}
+            honors={honors}
+            hobbies={hobbies}
           />
-          <ReactToPrint
-                trigger={() => <button className="print">Print or Save Resume as PDF</button>}
-                content={() => this.componentRef}
-          />
-            <div className="cv-view-container">
-                <CVBody CVInfo={this.state} ref={(el) => (this.componentRef = el)}/>
-            </div>
+        </div>
+        <div>
+        <OrderChoice 
+          eduFirst={eduFirst}
+          hobbiesFirst={hobbiesFirst}
+          handleEduCheckBoxChange={handleEduCheckBoxChange}
+          handleHobbyCheckBoxChange={handleHobbyCheckBoxChange}
+        />
+        <ReactToPrint
+            trigger={() => <button className="print">Print or Save Resume as PDF</button>}
+            content={() => componentRef.current}
+        />
+          <div className="cv-view-container">
+            <CVBody CVInfo={cv} ref={componentRef}/>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default App

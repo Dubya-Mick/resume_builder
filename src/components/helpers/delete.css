@@ -1,6 +1,6 @@
 :root {
     --delete-color: black;
-    --delete-hover-color: #e63946
+    --delete-hover-color: #e63946;
 }
 
 .detail-delete {
@@ -10,7 +10,7 @@
     border: none;
     cursor: pointer;
     position: absolute;
-    top: 12px;
+    top: 14px;
     right: 0px;
 }
 

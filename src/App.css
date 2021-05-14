@@ -72,6 +72,8 @@ a {
                  -16px -16px 32px #a8dadc;
 }
 
+
+
 .print {
     font-size: 1rem;
     font-family: 'Roboto Slab', serif; 
@@ -95,6 +97,27 @@ a {
     box-shadow:  16px 16px 32px #808080,
                  -16px -16px 32px #a8dadc;
 }
+
+@media only screen and (max-width: 425px) {
+    .cv-form-container {
+        width: 85vw;
+    }
+
+    .cv-view-container {
+        width: 85vw;
+    }
+
+    .app-title {
+        width: 10rem;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+}
+
+
 
 
 
